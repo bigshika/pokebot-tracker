@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>Pok&eacutefy Your To-Do List!</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<style>
+			.list {
+				width: 33%;
+				margin-left:auto;
+				margin-right:auto;
+			}
+
+			.bton {
+				width: 72.6px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+
+			.heading {
+				width: 33%;
+				margin-left:auto;
+				margin-right:auto;	
+				text-align: center;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script>
+			var emoji = [
+				":turtle:", ":bug:", ":monkey:", ":hatched_chick:", ":mouse:", ":snake:", ":hamster:", ":cat:", ":dog:", ":rabbit:", ":wolf:", ":frog:", ":tiger:", ":koala:", ":bear:", ":pig:", ":cow:", ":boar:", ":horse:", ":sheep:", ":elephant:", ":panda_face:", ":penguin:", ":bird:", ":ant:", ":beetle:", ":snail:", ":octopus:", ":tropical_fish:", ":whale:", ":dolphin:", ":water_buffalo:", ":goat:", ":dog2:", ":dragon_face:", ":blowfish:", ":crocodile:", ":dromedary_camel:", ":leopard:", ":poodle:", ":octocat:", ":unicorn_face:"
+			 ]
+			var customEmoji = [
+				":pikachu:", ":bulbasaur:", ":charmander:", ":squirtle:", ":snorlax:", ":fox:", ":badger:", ":turkey:", ":alien:", ":unicorn:", ":angry_unicorn:", ":applejack:", ":bigmac:", ":bigreddog:", ":binky:", ":blaze:", ":chewie:", ":cloudkicker:", ":deer:", ":dino:", ":doge:", ":dontdeletemematt:", ":drwhooves:", ":duck:", ":eeyup:", ":fluttershy:", ":grumpy_cat:", ":josharaptor:", ":meerkat:", ":moth:", ":nyan:", ":ostrich:", ":owl:", ":pinkiepie:", ":ponycop:", ":portal_cube:", ":rainbowdash:", ":realparrot:", ":sassaflash:", ":shark:", ":spitfire:", ":swanky_hank:", ":twilight-sparkle:", ":android:"
+			]
+
+			var lootTable = [
+				":gem:", ":beer:", ":bacon:", ":alembic:", ":battle_axe:", ":money_with_wings:", ":sparkles:", ":star:", ":star2:", ":bouquet:", ":fireworks:", ":gift:", ":bell:", ":crystal_ball:", ":mortar_board:", ":school_satchel:", ":key:", ":moneybag:", ":ring:", ":black_joker:", ":book:", ":trumpet:", ":saxophone:", ":high_heel:", ":ribbon:", ":crown:", ":tophat:", ":briefcase:", ":sake:", ":cocktail:", ":tropical_drink:", ":wine_glass:", ":pizza:", ":hamburger:", ":poultry_leg:", ":ramen:", ":dango:", ":doughnut:", ":custard:", ":icecream:", ":ice_cream:", ":shaved_ice:", ":cake:", ":cookie:", ":chocolate_bar:", ":candy:", ":lollipop:", ":honey_pot:", ":apple:", ":cherries:", ":peach:", ":strawberry:", ":watermelon:", ":grapes:", ":japanese_castle:", ":stars:", ":european_castle:", ":carousel_horse:", ":fountain:", ":rainbow:", ""
+			]
+
+			$(document).ready(function() {
+
+				function getRandomEmoji(emojiList) {
+					var index = Math.round((emojiList.length - 1) * Math.random());
+					return emojiList[index];
+				}
+
+				function replaceWithUniqueEmoji(stringList, emojiList, toBeReplaced) {
+					var numberOfItems = stringList.split(toBeReplaced).length - 1;
+				  	var newList = stringList;
+				  	while (numberOfItems > 0) {
+				  		var emoji = getRandomEmoji(emojiList);
+				  		if (emojiList.length > 1) {
+							emojiList.splice(emojiList.indexOf(emoji), 1);				  			
+				  		}
+				  		newList = newList.replace(toBeReplaced, emoji + ' ');
+				  		numberOfItems--;
+				  	}
+				  	return newList;
+				  }
+
+				function emojify(ev) {
+					var allEmoji = emoji.concat(customEmoji);
+					var allLoot = lootTable.slice();
+				  	var rawList = $('textarea#list').val();
+				  	var newList = replaceWithUniqueEmoji(rawList, allEmoji, '\* ');
+				  	newList = replaceWithUniqueEmoji(newList, allLoot, '$ ');
+				  	console.log(allEmoji.length);
+				  	console.log(lootTable.length);
+				  	$('#result').text(newList);
+				  	//console.log(newList)
+				    return false;
+				}
+				$(".bton").click("submit", emojify);
+			});
+		</script>
+	</head>
+	<body>	
+		<div class="heading"><h1>Pok&eacutefy Your To-Do List!</h1></div>
+		<div class="form-group">
+			<form class="pokefy">
+				<div class="list"><label for="list">Write your To-Do list here:</label></div>
+				<div class="list">
+					<textarea class="form-control" id="list" rows="10">Plot missions:
+* Catch Geodude 
+* Evolve Ponyta 
+* Go to Pok&eacutemon Center
+* Procrastinate
+Side quests:
+:psyduck: Read Pok&eacutedex
+TIL / Exp:
+$ Pikachu stores electricity in the sacs on its cheeks</textarea>
+				</div>
+			<br />
+			<div class="bton"><input class="btn btn-default" type="submit" value='Pok&#233fy!' /></div>
+			</form>
+		</div>
+		<br />
+		<div class="list">
+			<textarea class="form-control" rows="10" id="result"></textarea>
+		</div>
+	</body>
+</html>

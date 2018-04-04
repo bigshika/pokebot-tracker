@@ -1,0 +1,27 @@
+{
+  "name": "pokebot-tracker",
+  "version": "1.0.0",
+  "description": "Track your todo items with a handy",
+  "main": "listbot.js",
+  "dependencies": {
+    "botkit": "^0.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "SLACK_TOKEN={YOUR TOKEN GOES HERE} node listbot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigshika/pokebot-tracker.git"
+  },
+  "keywords": [
+    "cats"
+  ],
+  "author": "@bigshika",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bigshika/pokebot-tracker/issues"
+  },
+  "homepage": "https://github.com/bigshika/pokebot-tracker#readme"
+}
